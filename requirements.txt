@@ -1,0 +1,8 @@
+#This project needs the following packages:
+- numpy
+- cmath
+- matplotlib
+- random
+- os
+- sys
+- matplotlib.pyplot
