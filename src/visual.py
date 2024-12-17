@@ -1,9 +1,10 @@
 import numpy as np
 import gameoflife 
 from gameoflife import advance_board, set_board, plotgrid
-
+import matplotlib.pyplot as plt
 from IPython.display import display, clear_output
 import time  
+
 
 
 def calc_stats(game_board):
@@ -18,12 +19,12 @@ def calc_stats(game_board):
 
 
 def simulator(board_size=50, density=0.5,type='square',plot=True):
-
-    fig = plt.figure(figsize=(10, 10))
     
     game_board = set_board(board_size=board_size, density=density)
     
-    plotgrid(game_board)
+    if plot:
+        fig = plt.figure(figsize=(10, 10))
+        plotgrid(game_board)
 
     alive = True
     iterations = 0
@@ -34,22 +35,25 @@ def simulator(board_size=50, density=0.5,type='square',plot=True):
         
         iterated_board = advance_board(game_board,type)
         
+        iterations += 1
         #new_born = np.sum(np.maximum(iterated_board - game_board, 0))
         #new_borns+=new_born
-        if plot == True:    
+        if plot:    
             plotgrid(game_board)
             time.sleep(0.03)
             clear_output(wait=True)
             display(fig)
             fig.clear()
 
-        iterations += 1
-        if np.array_equal(iterated_board, game_board)  or iterations ==200:
+        
+        if np.array_equal(iterated_board, game_board) or iterations ==200:
             alive = False
         else:
             game_board = iterated_board
     
-    if plot == True:
+    if plot:
         plt.close()
+
     frac_empty, frac_alive = calc_stats(iterated_board)
-    return iterations , frac_alive
+
+    return iterations, frac_alive

@@ -67,11 +67,11 @@ def getNeighborValues(i,j, board, type='square'):
     for neighbor in neighborhood:
         i, j = neighbor
         if onBoard(i, j, board)==False:
-            if type is 'square':
+            if type == 'square':
                 pass
-            if type is 'torus': 
+            if type == 'torus': 
                 neighbor_values.append(board[i%ni,j%nj])
-            if type is sphere:
+            if type == 'sphere':
                 neighbor_values.append(board[c_j,c_i])
         else:
             neighbor_values.append(board[i,j])
