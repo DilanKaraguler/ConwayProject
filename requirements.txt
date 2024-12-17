@@ -6,3 +6,4 @@
 - os
 - sys
 - matplotlib.pyplot
+- seaborn
