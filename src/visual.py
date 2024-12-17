@@ -8,7 +8,7 @@ import time
 
 
 def calc_stats(game_board):
-    
+    '''For a given board, computes the empty and alive fraction'''
     board_length= game_board.shape[0]*game_board.shape[1]
     
     frac_empty = len(np.where(game_board==0)[0])/board_length
@@ -19,7 +19,7 @@ def calc_stats(game_board):
 
 
 def simulator(board_size=50, density=0.5,type='square',plot=True):
-    
+    '''Generated the simulator for a given initial density,board size, type of the board and plotting option'''
     game_board = set_board(board_size=board_size, density=density)
     
     if plot:
